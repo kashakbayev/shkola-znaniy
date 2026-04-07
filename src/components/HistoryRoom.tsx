@@ -1,3 +1,10 @@
+import abylaiKhanImg from '@/assets/history/abylai-khan.jpg';
+import kenesaryKhanImg from '@/assets/history/kenesary-khan.jpg';
+import kabanbayBatyrImg from '@/assets/history/kabanbay-batyr.jpg';
+import toleBiImg from '@/assets/history/tole-bi.jpg';
+import kazybekBiImg from '@/assets/history/kazybek-bi.jpg';
+import bogenbayBatyrImg from '@/assets/history/bogenbay-batyr.jpg';
+
 import React, { useState } from 'react';
 import { useGame } from '@/contexts/GameContext';
 import HudBar from '@/components/HudBar';
@@ -7,19 +14,73 @@ interface HistoricalFigure {
   name: string;
   title: string;
   period: string;
-  emoji: string;
+  image: string;
   options: string[];
   correct: number;
   reward: number;
 }
 
 const FIGURES: HistoricalFigure[] = [
-  { id: 'hist_1', name: 'Абылай хан', title: 'Хан Среднего жуза', period: 'XVIII век', emoji: '👑', options: ['Абылай хан', 'Кенесары хан', 'Касым хан', 'Тауке хан'], correct: 0, reward: 15 },
-  { id: 'hist_2', name: 'Кенесары хан', title: 'Последний хан казахов', period: 'XIX век', emoji: '⚔️', options: ['Абылай хан', 'Кенесары хан', 'Жангир хан', 'Касым хан'], correct: 1, reward: 15 },
-  { id: 'hist_3', name: 'Қабанбай батыр', title: 'Легендарный батыр', period: 'XVIII век', emoji: '🛡️', options: ['Бөгенбай батыр', 'Қабанбай батыр', 'Райымбек батыр', 'Наурызбай батыр'], correct: 1, reward: 15 },
-  { id: 'hist_4', name: 'Төле би', title: 'Би Старшего жуза', period: 'XVII–XVIII вв.', emoji: '📜', options: ['Әйтеке би', 'Қазыбек би', 'Төле би', 'Бухар жырау'], correct: 2, reward: 15 },
-  { id: 'hist_5', name: 'Қазыбек би', title: 'Би Среднего жуза', period: 'XVII–XVIII вв.', emoji: '⚖️', options: ['Төле би', 'Қазыбек би', 'Әйтеке би', 'Айтеке би'], correct: 1, reward: 15 },
-  { id: 'hist_6', name: 'Бөгенбай батыр', title: 'Великий полководец', period: 'XVIII век', emoji: '🏹', options: ['Қабанбай батыр', 'Наурызбай батыр', 'Бөгенбай батыр', 'Райымбек батыр'], correct: 2, reward: 15 },
+  {
+    id: 'hist_1',
+    name: 'Абылай хан',
+    title: 'Хан Среднего жуза',
+    period: 'XVIII век',
+    image: abylaiKhanImg,
+    options: ['Абылай хан', 'Кенесары хан', 'Касым хан', 'Тауке хан'],
+    correct: 0,
+    reward: 15
+  },
+  {
+    id: 'hist_2',
+    name: 'Кенесары хан',
+    title: 'Последний хан казахов',
+    period: 'XIX век',
+    image: kenesaryKhanImg,
+    options: ['Абылай хан', 'Кенесары хан', 'Жангир хан', 'Касым хан'],
+    correct: 1,
+    reward: 15
+  },
+  {
+    id: 'hist_3',
+    name: 'Қабанбай батыр',
+    title: 'Легендарный батыр',
+    period: 'XVIII век',
+    image: kabanbayBatyrImg,
+    options: ['Бөгенбай батыр', 'Қабанбай батыр', 'Райымбек батыр', 'Наурызбай батыр'],
+    correct: 1,
+    reward: 15
+  },
+  {
+    id: 'hist_4',
+    name: 'Төле би',
+    title: 'Би Старшего жуза',
+    period: 'XVII–XVIII вв.',
+    image: toleBiImg,
+    options: ['Әйтеке би', 'Қазыбек би', 'Төле би', 'Бухар жырау'],
+    correct: 2,
+    reward: 15
+  },
+  {
+    id: 'hist_5',
+    name: 'Қазыбек би',
+    title: 'Би Среднего жуза',
+    period: 'XVII–XVIII вв.',
+    image: kazybekBiImg,
+    options: ['Төле би', 'Қазыбек би', 'Әйтеке би', 'Айтеке би'],
+    correct: 1,
+    reward: 15
+  },
+  {
+    id: 'hist_6',
+    name: 'Бөгенбай батыр',
+    title: 'Великий полководец',
+    period: 'XVIII век',
+    image: bogenbayBatyrImg,
+    options: ['Қабанбай батыр', 'Наурызбай батыр', 'Бөгенбай батыр', 'Райымбек батыр'],
+    correct: 2,
+    reward: 15
+  },
 ];
 
 const HistoryRoom: React.FC = () => {
@@ -80,8 +141,18 @@ const HistoryRoom: React.FC = () => {
           {/* Portrait card */}
           <div className="portrait-card mx-auto max-w-sm mb-6" style={{ background: 'linear-gradient(135deg, hsl(30 30% 18%), hsl(30 20% 14%))', border: '2px solid hsl(40 60% 40% / 0.3)' }}>
             <div className="p-8 flex flex-col items-center text-center">
-              <div className="w-28 h-28 rounded-full flex items-center justify-center mb-4 text-6xl" style={{ background: 'linear-gradient(135deg, hsl(40 50% 25%), hsl(30 40% 18%))', boxShadow: '0 0 30px hsl(40 70% 55% / 0.2), inset 0 2px 10px hsl(40 50% 30% / 0.3)' }}>
-                {figure.emoji}
+              <div
+                className="w-36 h-36 rounded-full overflow-hidden mb-4 border-4"
+                style={{
+                  borderColor: 'hsl(40 60% 45% / 0.5)',
+                  boxShadow: '0 0 30px hsl(40 70% 55% / 0.2), inset 0 2px 10px hsl(40 50% 30% / 0.3)'
+                }}
+              >
+                <img
+                  src={figure.image}
+                  alt={figure.name}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <h3 className="font-display text-xl font-bold mb-1 text-glow-hist" style={{ color: 'hsl(40 80% 65%)' }}>
                 Кто изображен?
