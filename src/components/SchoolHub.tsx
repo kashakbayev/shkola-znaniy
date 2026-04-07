@@ -1,9 +1,8 @@
 import React from 'react';
 import { useGame } from '@/contexts/GameContext';
 import HudBar from '@/components/HudBar';
-import { FlaskConical, Calculator, Landmark } from 'lucide-react';
+import { FlaskConical, Calculator, Landmark, Languages, Globe2 } from 'lucide-react';
 import type { Screen } from '@/contexts/GameContext';
-import { Languages } from 'lucide-react';
 
 const rooms: { id: Screen; name: string; icon: React.ReactNode; emoji: string; gradient: string; glowClass: string; desc: string }[] = [
   {
@@ -34,14 +33,23 @@ const rooms: { id: Screen; name: string; icon: React.ReactNode; emoji: string; g
     desc: 'Тарих порталы',
   },
   {
-  id: 'language',
-  name: 'Language Town',
-  icon: <Languages className="w-10 h-10" />,
-  emoji: '🗣️',
-  gradient: 'from-sky-900 via-cyan-900 to-sky-950',
-  glowClass: 'glow-language',
-  desc: 'Тілдер қаласы',
-},
+    id: 'language',
+    name: 'Language Town',
+    icon: <Languages className="w-10 h-10" />,
+    emoji: '🗣️',
+    gradient: 'from-sky-900 via-cyan-900 to-sky-950',
+    glowClass: 'glow-language',
+    desc: 'Тілдер қаласы',
+  },
+  {
+    id: 'geography',
+    name: 'Географиялық панорама',
+    icon: <Globe2 className="w-10 h-10" />,
+    emoji: '🌍',
+    gradient: 'from-emerald-900 via-teal-900 to-cyan-950',
+    glowClass: 'glow-geography',
+    desc: 'Елдер, карталар және астаналар',
+  },
 ];
 
 const accentColors: Record<string, string> = {
@@ -49,6 +57,7 @@ const accentColors: Record<string, string> = {
   math: 'hsl(250 70% 60%)',
   history: 'hsl(40 70% 55%)',
   language: 'hsl(190 80% 55%)',
+  geography: 'hsl(170 75% 50%)',
 };
 
 const SchoolHub: React.FC = () => {

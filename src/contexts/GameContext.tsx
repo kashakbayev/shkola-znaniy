@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
-export type Screen = 'hub' | 'chemistry' | 'math' | 'history' | 'language' | 'shop';
+export type Screen = 'hub' | 'chemistry' | 'math' | 'history' | 'language' | 'geography' | 'shop';
 export type AvatarId = 'boy' | 'girl' | 'student1' | 'student2';
 
 interface TaskProgress {
@@ -29,7 +29,7 @@ interface GameContextType extends GameState {
 }
 
 const STORAGE_KEY = 'eduschool_progress';
-const TOTAL_TASKS = 18;
+const TOTAL_TASKS = 24;
 
 const defaultState: GameState = {
   educoins: 0,

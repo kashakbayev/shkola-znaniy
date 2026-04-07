@@ -6,6 +6,7 @@ import MathRoom from '@/components/MathRoom';
 import HistoryRoom from '@/components/HistoryRoom';
 import LanguageRoom from '@/components/LanguageRoom';
 import ShopRoom from '@/components/ShopRoom';
+import GeographyRoom from '@/components/GeographyRoom';
 
 const GameRouter: React.FC = () => {
   const { currentScreen } = useGame();
@@ -17,6 +18,7 @@ const GameRouter: React.FC = () => {
       {currentScreen === 'math' && <MathRoom />}
       {currentScreen === 'history' && <HistoryRoom />}
       {currentScreen === 'language' && <LanguageRoom />}
+      {currentScreen === 'geography' && <GeographyRoom />}
       {currentScreen === 'shop' && <ShopRoom />}
     </div>
   );
