@@ -4,6 +4,8 @@ import SchoolHub from '@/components/SchoolHub';
 import ChemistryRoom from '@/components/ChemistryRoom';
 import MathRoom from '@/components/MathRoom';
 import HistoryRoom from '@/components/HistoryRoom';
+import LanguageRoom from '@/components/LanguageRoom';
+import ShopRoom from '@/components/ShopRoom';
 
 const GameRouter: React.FC = () => {
   const { currentScreen } = useGame();
@@ -14,6 +16,8 @@ const GameRouter: React.FC = () => {
       {currentScreen === 'chemistry' && <ChemistryRoom />}
       {currentScreen === 'math' && <MathRoom />}
       {currentScreen === 'history' && <HistoryRoom />}
+      {currentScreen === 'language' && <LanguageRoom />}
+      {currentScreen === 'shop' && <ShopRoom />}
     </div>
   );
 };

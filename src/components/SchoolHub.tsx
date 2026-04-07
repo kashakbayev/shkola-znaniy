@@ -3,6 +3,7 @@ import { useGame } from '@/contexts/GameContext';
 import HudBar from '@/components/HudBar';
 import { FlaskConical, Calculator, Landmark } from 'lucide-react';
 import type { Screen } from '@/contexts/GameContext';
+import { Languages } from 'lucide-react';
 
 const rooms: { id: Screen; name: string; icon: React.ReactNode; emoji: string; gradient: string; glowClass: string; desc: string }[] = [
   {
@@ -21,7 +22,7 @@ const rooms: { id: Screen; name: string; icon: React.ReactNode; emoji: string; g
     emoji: '📐',
     gradient: 'from-math-bg via-math-panel to-math-bg',
     glowClass: 'glow-math',
-    desc: 'Формулалар мен сандар әлемі',
+    desc: 'Математикалық лабиринт',
   },
   {
     id: 'history',
@@ -30,14 +31,24 @@ const rooms: { id: Screen; name: string; icon: React.ReactNode; emoji: string; g
     emoji: '🏛️',
     gradient: 'from-hist-bg via-hist-panel to-hist-bg',
     glowClass: 'glow-hist',
-    desc: 'Өткенге саяхат',
+    desc: 'Тарих порталы',
   },
+  {
+  id: 'language',
+  name: 'Language Town',
+  icon: <Languages className="w-10 h-10" />,
+  emoji: '🗣️',
+  gradient: 'from-sky-900 via-cyan-900 to-sky-950',
+  glowClass: 'glow-language',
+  desc: 'Тілдер қаласы',
+},
 ];
 
 const accentColors: Record<string, string> = {
   chemistry: 'hsl(175 80% 45%)',
   math: 'hsl(250 70% 60%)',
   history: 'hsl(40 70% 55%)',
+  language: 'hsl(190 80% 55%)',
 };
 
 const SchoolHub: React.FC = () => {
@@ -50,7 +61,7 @@ const SchoolHub: React.FC = () => {
       window.location.reload();
     };
 
-  const { setScreen, totalCompleted, totalTasks } = useGame();
+  const { setScreen, totalCompleted, totalTasks, selectedAvatar, setSelectedAvatar } = useGame();
   const progressPercent = totalTasks > 0 ? Math.round((totalCompleted / totalTasks) * 100) : 0;
 
   return (
@@ -72,6 +83,43 @@ const SchoolHub: React.FC = () => {
           <p className="font-body text-lg" style={{ color: 'hsl(220 15% 60%)' }}>
             Кабинетті таңда да, оқуды баста
           </p>
+
+          <div className="mt-4 flex flex-col items-center gap-3">
+            <div className="text-6xl">
+              {selectedAvatar === 'boy' && '🧑‍🎓'}
+              {selectedAvatar === 'girl' && '👩‍🎓'}
+              {selectedAvatar === 'student1' && '🧑'}
+              {selectedAvatar === 'student2' && '👧'}
+            </div>
+
+            <div className="flex gap-2 flex-wrap justify-center">
+              <button
+                onClick={() => setSelectedAvatar('boy')}
+                className="px-3 py-2 rounded-xl font-bold"
+              >
+                Ұл
+              </button>
+              <button
+                onClick={() => setSelectedAvatar('girl')}
+                className="px-3 py-2 rounded-xl font-bold"
+              >
+                Қыз
+              </button>
+              <button
+                onClick={() => setSelectedAvatar('student1')}
+                className="px-3 py-2 rounded-xl font-bold"
+              >
+                Аватар 1
+              </button>
+              <button
+                onClick={() => setSelectedAvatar('student2')}
+                className="px-3 py-2 rounded-xl font-bold"
+              >
+                Аватар 2
+              </button>
+            </div>
+          </div>
+
           <button
             onClick={handleReset}
             className="mt-4 px-4 py-2 rounded-xl font-bold transition-all hover:scale-105"
@@ -82,6 +130,17 @@ const SchoolHub: React.FC = () => {
             }}
           >
             Прогресті тазалау
+          </button>
+          <br></br>
+          <button
+            onClick={() => setScreen('shop')}
+            className="mt-4 px-4 py-2 rounded-xl font-bold transition-all hover:scale-105"
+            style={{
+              background: 'linear-gradient(135deg, hsl(300 70% 55%), hsl(280 70% 45%))',
+              color: 'white',
+            }}
+          >
+            🛍️ Дүкенге кіру
           </button>
           {/* Progress bar */}
           <div className="mt-4 mx-auto max-w-xs">
