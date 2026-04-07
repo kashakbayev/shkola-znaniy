@@ -24,28 +24,28 @@ const FIGURES: HistoricalFigure[] = [
   {
     id: 'hist_1',
     name: 'Абылай хан',
-    title: 'Хан Среднего жуза',
-    period: 'XVIII век',
+    title: 'Орта Жүздің ханы',
+    period: 'XVIII ғасыр',
     image: abylaiKhanImg,
-    options: ['Абылай хан', 'Кенесары хан', 'Касым хан', 'Тауке хан'],
+    options: ['Абылай хан', 'Кенесары хан', 'Қасым хан', 'Тәуке хан'],
     correct: 0,
     reward: 15
   },
   {
     id: 'hist_2',
     name: 'Кенесары хан',
-    title: 'Последний хан казахов',
-    period: 'XIX век',
+    title: 'Қазақтың соңғы ханы',
+    period: 'XIX ғасыр',
     image: kenesaryKhanImg,
-    options: ['Абылай хан', 'Кенесары хан', 'Жангир хан', 'Касым хан'],
+    options: ['Абылай хан', 'Кенесары хан', 'Жәңгір хан', 'Қасым хан'],
     correct: 1,
     reward: 15
   },
   {
     id: 'hist_3',
     name: 'Қабанбай батыр',
-    title: 'Легендарный батыр',
-    period: 'XVIII век',
+    title: 'Аңызға айналған батыр',
+    period: 'XVIII ғасыр',
     image: kabanbayBatyrImg,
     options: ['Бөгенбай батыр', 'Қабанбай батыр', 'Райымбек батыр', 'Наурызбай батыр'],
     correct: 1,
@@ -54,28 +54,28 @@ const FIGURES: HistoricalFigure[] = [
   {
     id: 'hist_4',
     name: 'Төле би',
-    title: 'Би Старшего жуза',
-    period: 'XVII–XVIII вв.',
+    title: 'Ұлы Жүздің биі',
+    period: 'XVII–XVIII ғғ.',
     image: toleBiImg,
-    options: ['Әйтеке би', 'Қазыбек би', 'Төле би', 'Бухар жырау'],
+    options: ['Әйтеке би', 'Қазыбек би', 'Төле би', 'Бұхар жырау'],
     correct: 2,
     reward: 15
   },
   {
     id: 'hist_5',
     name: 'Қазыбек би',
-    title: 'Би Среднего жуза',
-    period: 'XVII–XVIII вв.',
+    title: 'Орта Жүздің биі',
+    period: 'XVII–XVIII ғғ.',
     image: kazybekBiImg,
-    options: ['Төле би', 'Қазыбек би', 'Әйтеке би', 'Айтеке би'],
+    options: ['Төле би', 'Қазыбек би', 'Әйтеке би', 'Бұхар Жырау'],
     correct: 1,
     reward: 15
   },
   {
     id: 'hist_6',
     name: 'Бөгенбай батыр',
-    title: 'Великий полководец',
-    period: 'XVIII век',
+    title: 'Ұлы көшбасшы',
+    period: 'XVIII ғасыр',
     image: bogenbayBatyrImg,
     options: ['Қабанбай батыр', 'Наурызбай батыр', 'Бөгенбай батыр', 'Райымбек батыр'],
     correct: 2,
@@ -97,12 +97,12 @@ const HistoryRoom: React.FC = () => {
     if (selected !== null) return;
     setSelected(i);
     if (i === figure.correct) {
-      setFeedback({ type: 'success', text: 'Верно! Отлично! 🎉' });
+      setFeedback({ type: 'success', text: 'Дұрыс! Жарайсың! 🎉' });
       completeTask(figure.id, figure.reward);
       setShowCoin(true);
       setTimeout(() => setShowCoin(false), 1500);
     } else {
-      setFeedback({ type: 'error', text: 'Неверно. Попробуй еще раз! 📚' });
+      setFeedback({ type: 'error', text: 'Қате. Қайтадан байқап көр! 📚' });
     }
   };
 
@@ -119,7 +119,7 @@ const HistoryRoom: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: 'linear-gradient(180deg, hsl(30 25% 8%), hsl(30 20% 12%), hsl(25 18% 10%))' }}>
-      <div className="p-4"><HudBar title="🏛️ История Казахстана" showBack /></div>
+      <div className="p-4"><HudBar title="🏛️ Қазақстан тарихы" showBack /></div>
 
       {/* Decorative */}
       <div className="fixed top-24 right-8 text-4xl opacity-10 pointer-events-none animate-float">🗺️</div>
@@ -130,9 +130,9 @@ const HistoryRoom: React.FC = () => {
           <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
             <div className="flex items-center gap-2">
               <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: 'hsl(40 70% 55% / 0.2)', color: 'hsl(40 70% 60%)' }}>
-                Угадай личность
+                Тұлғаны тап
               </span>
-              <span className="text-xs" style={{ color: 'hsl(30 15% 50%)' }}>Задание {figureIndex + 1}/{FIGURES.length}</span>
+              <span className="text-xs" style={{ color: 'hsl(30 15% 50%)' }}>Тапсырма {figureIndex + 1}/{FIGURES.length}</span>
               {completed && <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: 'hsl(145 70% 45% / 0.2)', color: 'hsl(145 70% 55%)' }}>✓</span>}
             </div>
             <div className="educoin-badge text-sm">🪙 +{figure.reward}</div>
@@ -155,7 +155,7 @@ const HistoryRoom: React.FC = () => {
                 />
               </div>
               <h3 className="font-display text-xl font-bold mb-1 text-glow-hist" style={{ color: 'hsl(40 80% 65%)' }}>
-                Кто изображен?
+                Суретте кім бейнеленген?
               </h3>
               <p className="text-sm" style={{ color: 'hsl(30 15% 55%)' }}>{figure.title} • {figure.period}</p>
               {/* Ornament line */}
@@ -196,9 +196,9 @@ const HistoryRoom: React.FC = () => {
           )}
 
           <div className="flex justify-center gap-3 mt-4">
-            <button onClick={prev} disabled={figureIndex === 0} className="px-4 py-2 rounded-xl font-display font-bold text-sm disabled:opacity-30 transition-colors" style={{ background: 'hsl(30 20% 18%)', color: 'hsl(40 70% 60%)' }}>← Назад</button>
-            {feedback?.type === 'error' && <button onClick={retry} className="px-4 py-2 rounded-xl font-display font-bold text-sm" style={{ background: 'hsl(30 20% 18%)', color: 'hsl(40 70% 60%)' }}>🔄 Еще раз</button>}
-            <button onClick={next} disabled={figureIndex === FIGURES.length - 1} className="px-4 py-2 rounded-xl font-display font-bold text-sm disabled:opacity-30 transition-colors" style={{ background: 'hsl(30 20% 18%)', color: 'hsl(40 70% 60%)' }}>Далее →</button>
+            <button onClick={prev} disabled={figureIndex === 0} className="px-4 py-2 rounded-xl font-display font-bold text-sm disabled:opacity-30 transition-colors" style={{ background: 'hsl(30 20% 18%)', color: 'hsl(40 70% 60%)' }}>← Артқа</button>
+            {feedback?.type === 'error' && <button onClick={retry} className="px-4 py-2 rounded-xl font-display font-bold text-sm" style={{ background: 'hsl(30 20% 18%)', color: 'hsl(40 70% 60%)' }}>🔄 Қайта көру</button>}
+            <button onClick={next} disabled={figureIndex === FIGURES.length - 1} className="px-4 py-2 rounded-xl font-display font-bold text-sm disabled:opacity-30 transition-colors" style={{ background: 'hsl(30 20% 18%)', color: 'hsl(40 70% 60%)' }}>Келесі →</button>
           </div>
         </div>
       </div>

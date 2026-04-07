@@ -132,9 +132,9 @@ const ChemistryRoom: React.FC = () => {
                 {completed && <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: 'hsl(145 70% 45% / 0.2)', color: 'hsl(145 70% 55%)' }}>✓ Орындалды</span>}
               </div>
               <h3 className="font-display text-xl font-bold text-glow-chem" style={{ color: 'hsl(175 80% 55%)' }}>
-                Собери молекулу: {task.name}
+                Молекуланы құрастыр: {task.name}
               </h3>
-              <p className="text-sm mt-1" style={{ color: 'hsl(200 15% 55%)' }}>Подсказка: {task.hint}</p>
+              <p className="text-sm mt-1" style={{ color: 'hsl(200 15% 55%)' }}>Көмек: {task.hint}</p>
             </div>
             <div className="flex items-center gap-3">
               <div className="educoin-badge text-sm">🪙 +{task.reward}</div>
@@ -165,7 +165,7 @@ const ChemistryRoom: React.FC = () => {
         >
           {placedAtoms.length === 0 && (
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <p className="font-display text-lg" style={{ color: 'hsl(200 15% 30%)' }}>Перетащи атомы сюда ⬇️</p>
+              <p className="font-display text-lg" style={{ color: 'hsl(200 15% 30%)' }}>Атомдарды осы жерге сүйреп әкел ⬇️</p>
             </div>
           )}
 
@@ -188,7 +188,7 @@ const ChemistryRoom: React.FC = () => {
               className="atom-token absolute w-14 h-14 text-lg animate-bounce-in"
               style={{ left: atom.x - 28, top: atom.y - 28, background: ATOMS[atom.symbol].color, color: ATOMS[atom.symbol].textColor, boxShadow: `0 0 16px ${ATOMS[atom.symbol].color}66` }}
               onClick={() => removeAtom(atom.id)}
-              title="Нажми чтобы удалить"
+              title="Жою үшін бас"
             >
               {atom.symbol}
             </div>
@@ -220,7 +220,7 @@ const ChemistryRoom: React.FC = () => {
 
         {/* Atom tray */}
         <div className="room-panel p-4" style={{ background: 'hsl(200 30% 12% / 0.9)', borderColor: 'hsl(175 80% 45% / 0.2)' }}>
-          <p className="text-xs font-display font-bold mb-3" style={{ color: 'hsl(175 80% 55%)' }}>Атомдар — перетащи в рабочую зону:</p>
+          <p className="text-xs font-display font-bold mb-3" style={{ color: 'hsl(175 80% 55%)' }}>Атомдар — жұмыс аймағына сүйреп апар:</p>
           <div className="flex gap-4 justify-center flex-wrap">
             {Object.values(ATOMS).map(atom => (
               <div

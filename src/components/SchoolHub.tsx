@@ -12,7 +12,7 @@ const rooms: { id: Screen; name: string; icon: React.ReactNode; emoji: string; g
     emoji: '🧪',
     gradient: 'from-chem-bg via-chem-panel to-chem-bg',
     glowClass: 'glow-chem',
-    desc: 'Лаборатория молекул',
+    desc: 'Молекулалар зертханасы',
   },
   {
     id: 'math',
@@ -21,16 +21,16 @@ const rooms: { id: Screen; name: string; icon: React.ReactNode; emoji: string; g
     emoji: '📐',
     gradient: 'from-math-bg via-math-panel to-math-bg',
     glowClass: 'glow-math',
-    desc: 'Мир формул и чисел',
+    desc: 'Формулалар мен сандар әлемі',
   },
   {
     id: 'history',
-    name: 'История Казахстана',
+    name: 'Қазақстан тарихы',
     icon: <Landmark className="w-10 h-10" />,
     emoji: '🏛️',
     gradient: 'from-hist-bg via-hist-panel to-hist-bg',
     glowClass: 'glow-hist',
-    desc: 'Путешествие в прошлое',
+    desc: 'Өткенге саяхат',
   },
 ];
 
@@ -41,6 +41,15 @@ const accentColors: Record<string, string> = {
 };
 
 const SchoolHub: React.FC = () => {
+
+    const handleReset = () => {
+      const ok = window.confirm('Прогресті шынымен өшіргің келе ме?');
+      if (!ok) return;
+
+      localStorage.clear();
+      window.location.reload();
+    };
+
   const { setScreen, totalCompleted, totalTasks } = useGame();
   const progressPercent = totalTasks > 0 ? Math.round((totalCompleted / totalTasks) * 100) : 0;
 
@@ -50,7 +59,7 @@ const SchoolHub: React.FC = () => {
       style={{ background: 'linear-gradient(180deg, hsl(220 25% 10%), hsl(220 20% 16%), hsl(25 20% 14%))' }}
     >
       <div className="p-4">
-        <HudBar title="Школа знаний" />
+        <HudBar title="Білім мектебі" />
       </div>
 
       <div className="flex-1 flex flex-col items-center justify-center px-4 pb-8">
@@ -58,11 +67,22 @@ const SchoolHub: React.FC = () => {
         <div className="text-center mb-10 animate-fade-in">
           <div className="text-6xl mb-3">🏫</div>
           <h1 className="font-display text-4xl font-black mb-2" style={{ color: 'hsl(0 0% 92%)' }}>
-            Школа знаний
+            Білім мектебі
           </h1>
           <p className="font-body text-lg" style={{ color: 'hsl(220 15% 60%)' }}>
-            Выбери кабинет и начни обучение
+            Кабинетті таңда да, оқуды баста
           </p>
+          <button
+            onClick={handleReset}
+            className="mt-4 px-4 py-2 rounded-xl font-bold transition-all hover:scale-105"
+            style={{
+              background: 'hsl(0 70% 50% / 0.15)',
+              color: 'hsl(0 80% 70%)',
+              border: '1px solid hsl(0 70% 50% / 0.3)'
+            }}
+          >
+            Прогресті тазалау
+          </button>
           {/* Progress bar */}
           <div className="mt-4 mx-auto max-w-xs">
             <div className="flex justify-between text-xs mb-1" style={{ color: 'hsl(220 15% 55%)' }}>
@@ -118,7 +138,7 @@ const SchoolHub: React.FC = () => {
                 {/* Enter indicator */}
                 <div className="mt-2 px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-300 opacity-60 group-hover:opacity-100"
                   style={{ background: `${accentColors[room.id]}22`, color: accentColors[room.id], border: `1px solid ${accentColors[room.id]}44` }}>
-                  Войти →
+                  Кіру →
                 </div>
               </div>
             </button>

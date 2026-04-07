@@ -12,12 +12,12 @@ interface MathTask {
 }
 
 const TASKS: MathTask[] = [
-  { id: 'math_1', question: 'Реши уравнение: 2x + 6 = 14', options: ['x = 3', 'x = 4', 'x = 5', 'x = 8'], correct: 1, reward: 10, type: 'Уравнение' },
-  { id: 'math_2', question: 'Чему равно 25% от 80?', options: ['15', '20', '25', '40'], correct: 1, reward: 10, type: 'Проценты' },
-  { id: 'math_3', question: 'Упрости дробь: 12/18', options: ['2/3', '3/4', '4/6', '6/9'], correct: 0, reward: 10, type: 'Дроби' },
-  { id: 'math_4', question: 'Площадь прямоугольника со сторонами 5 и 8 равна:', options: ['13', '26', '40', '48'], correct: 2, reward: 15, type: 'Геометрия' },
-  { id: 'math_5', question: 'Реши: 3(x - 2) = 12', options: ['x = 6', 'x = 5', 'x = 4', 'x = 2'], correct: 0, reward: 15, type: 'Уравнение' },
-  { id: 'math_6', question: 'Найди x в пропорции: 3/x = 9/12', options: ['x = 4', 'x = 3', 'x = 6', 'x = 2'], correct: 0, reward: 15, type: 'Пропорции' },
+  { id: 'math_1', question: 'Теңдеуді шеш: 2x + 6 = 14', options: ['x = 3', 'x = 4', 'x = 5', 'x = 8'], correct: 1, reward: 10, type: 'Теңдеу' },
+  { id: 'math_2', question: '80 санының 25%-ы неге тең?', options: ['15', '20', '25', '40'], correct: 1, reward: 10, type: 'Пайыздар' },
+  { id: 'math_3', question: 'Бөлшекті ықшамда: 12/18', options: ['2/3', '3/4', '4/6', '6/9'], correct: 0, reward: 10, type: 'Бөлшектер' },
+  { id: 'math_4', question: 'Қабырғалары 5 және 8 болатын тіктөртбұрыштың ауданы:', options: ['13', '26', '40', '48'], correct: 2, reward: 15, type: 'Геометрия' },
+  { id: 'math_5', question: 'Шеш: 3(x - 2) = 12', options: ['x = 6', 'x = 5', 'x = 4', 'x = 2'], correct: 0, reward: 15, type: 'Теңдеу' },
+  { id: 'math_6', question: 'Пропорциядан x-ті тап: 3/x = 9/12', options: ['x = 4', 'x = 3', 'x = 6', 'x = 2'], correct: 0, reward: 15, type: 'Пропорциялар' },
 ];
 
 const MathRoom: React.FC = () => {
@@ -34,12 +34,12 @@ const MathRoom: React.FC = () => {
     if (selected !== null) return;
     setSelected(i);
     if (i === task.correct) {
-      setFeedback({ type: 'success', text: 'Правильно! Жарайсың! 🎉' });
+      setFeedback({ type: 'success', text: 'Дұрыс! Жарайсың! 🎉' });
       completeTask(task.id, task.reward);
       setShowCoin(true);
       setTimeout(() => setShowCoin(false), 1500);
     } else {
-      setFeedback({ type: 'error', text: 'Неверно. Попробуй еще раз! 🤔' });
+      setFeedback({ type: 'error', text: 'Қате. Қайтадан байқап көр! 🤔' });
     }
   };
 
@@ -78,7 +78,7 @@ const MathRoom: React.FC = () => {
               <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: 'hsl(250 70% 60% / 0.2)', color: 'hsl(250 70% 65%)' }}>
                 {task.type}
               </span>
-              <span className="text-xs" style={{ color: 'hsl(240 15% 50%)' }}>Задание {taskIndex + 1}/{TASKS.length}</span>
+              <span className="text-xs" style={{ color: 'hsl(240 15% 50%)' }}>Тапсырма {taskIndex + 1}/{TASKS.length}</span>
               {completed && <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: 'hsl(145 70% 45% / 0.2)', color: 'hsl(145 70% 55%)' }}>✓</span>}
             </div>
             <div className="educoin-badge text-sm">🪙 +{task.reward}</div>
@@ -122,9 +122,9 @@ const MathRoom: React.FC = () => {
 
           {/* Navigation */}
           <div className="flex justify-center gap-3 mt-4">
-            <button onClick={prevTask} disabled={taskIndex === 0} className="px-4 py-2 rounded-xl font-display font-bold text-sm disabled:opacity-30 transition-colors" style={{ background: 'hsl(240 25% 18%)', color: 'hsl(250 70% 65%)' }}>← Назад</button>
-            {feedback?.type === 'error' && <button onClick={retry} className="px-4 py-2 rounded-xl font-display font-bold text-sm" style={{ background: 'hsl(240 25% 18%)', color: 'hsl(250 70% 65%)' }}>🔄 Еще раз</button>}
-            <button onClick={nextTask} disabled={taskIndex === TASKS.length - 1} className="px-4 py-2 rounded-xl font-display font-bold text-sm disabled:opacity-30 transition-colors" style={{ background: 'hsl(240 25% 18%)', color: 'hsl(250 70% 65%)' }}>Далее →</button>
+            <button onClick={prevTask} disabled={taskIndex === 0} className="px-4 py-2 rounded-xl font-display font-bold text-sm disabled:opacity-30 transition-colors" style={{ background: 'hsl(240 25% 18%)', color: 'hsl(250 70% 65%)' }}>← Артқа</button>
+            {feedback?.type === 'error' && <button onClick={retry} className="px-4 py-2 rounded-xl font-display font-bold text-sm" style={{ background: 'hsl(240 25% 18%)', color: 'hsl(250 70% 65%)' }}>🔄 Қайта көру</button>}
+            <button onClick={nextTask} disabled={taskIndex === TASKS.length - 1} className="px-4 py-2 rounded-xl font-display font-bold text-sm disabled:opacity-30 transition-colors" style={{ background: 'hsl(240 25% 18%)', color: 'hsl(250 70% 65%)' }}>Келесі →</button>
           </div>
         </div>
       </div>

@@ -7,8 +7,9 @@ interface HudBarProps {
   showBack?: boolean;
 }
 
-const HudBar: React.FC<HudBarProps> = ({ title, showBack = false }) => {
+const HudBar: React.FC<HudBarProps> = ({ title, showBack = false }) => { 
   const { educoins, totalCompleted, totalTasks, setScreen } = useGame();
+
 
   return (
     <div className="hud-bar animate-fade-in z-50">
@@ -19,7 +20,7 @@ const HudBar: React.FC<HudBarProps> = ({ title, showBack = false }) => {
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-hub-wall/60 hover:bg-hub-wall transition-colors font-display text-sm"
             style={{ color: 'hsl(0 0% 85%)' }}
           >
-            ← Назад
+            ← Артқа
           </button>
         )}
         {title && (
