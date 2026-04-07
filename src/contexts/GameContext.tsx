@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
 export type Screen = 'hub' | 'chemistry' | 'math' | 'history' | 'language' | 'geography' | 'shop';
-export type AvatarId = 'boy' | 'girl' | 'student1' | 'student2';
+export type AvatarId = 'boy' | 'girl';
 
 interface TaskProgress {
   [taskId: string]: boolean;

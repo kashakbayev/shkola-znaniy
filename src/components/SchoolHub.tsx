@@ -70,8 +70,28 @@ const SchoolHub: React.FC = () => {
       window.location.reload();
     };
 
-  const { setScreen, totalCompleted, totalTasks, selectedAvatar, setSelectedAvatar } = useGame();
+  const { setScreen, totalCompleted, totalTasks, selectedAvatar, equippedItem } = useGame();
   const progressPercent = totalTasks > 0 ? Math.round((totalCompleted / totalTasks) * 100) : 0;
+
+  const getAvatarEmoji = () => {
+  if (selectedAvatar === 'boy') {
+    if (equippedItem === 'robe') return '🧑‍🎓';
+    if (equippedItem === 'crown') return '🤴';
+    if (equippedItem === 'champion') return '🦸‍♂️';
+    if (equippedItem === 'smart') return '🧑‍💼';
+    return '🧑';
+  }
+
+  if (selectedAvatar === 'girl') {
+    if (equippedItem === 'robe') return '👩‍🎓';
+    if (equippedItem === 'crown') return '👸';
+    if (equippedItem === 'champion') return '🦸‍♀️';
+    if (equippedItem === 'smart') return '👩‍💼';
+    return '👩';
+  }
+
+  return '🧑';
+};
 
   return (
     <div
@@ -94,38 +114,8 @@ const SchoolHub: React.FC = () => {
           </p>
 
           <div className="mt-4 flex flex-col items-center gap-3">
-            <div className="text-6xl">
-              {selectedAvatar === 'boy' && '🧑‍🎓'}
-              {selectedAvatar === 'girl' && '👩‍🎓'}
-              {selectedAvatar === 'student1' && '🧑'}
-              {selectedAvatar === 'student2' && '👧'}
-            </div>
-
-            <div className="flex gap-2 flex-wrap justify-center">
-              <button
-                onClick={() => setSelectedAvatar('boy')}
-                className="px-3 py-2 rounded-xl font-bold"
-              >
-                Ұл
-              </button>
-              <button
-                onClick={() => setSelectedAvatar('girl')}
-                className="px-3 py-2 rounded-xl font-bold"
-              >
-                Қыз
-              </button>
-              <button
-                onClick={() => setSelectedAvatar('student1')}
-                className="px-3 py-2 rounded-xl font-bold"
-              >
-                Аватар 1
-              </button>
-              <button
-                onClick={() => setSelectedAvatar('student2')}
-                className="px-3 py-2 rounded-xl font-bold"
-              >
-                Аватар 2
-              </button>
+            <div className="mt-4 text-6xl">
+              {getAvatarEmoji()}
             </div>
           </div>
 

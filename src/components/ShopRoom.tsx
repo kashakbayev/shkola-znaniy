@@ -3,10 +3,10 @@ import { useGame } from '@/contexts/GameContext';
 import HudBar from '@/components/HudBar';
 
 const SHOP_ITEMS = [
-  { id: 'cap_red', name: 'Қызыл бас киім', price: 30, icon: '🧢' },
-  { id: 'glasses', name: 'Көзілдірік', price: 40, icon: '🕶️' },
-  { id: 'jacket', name: 'Күртеше', price: 50, icon: '🧥' },
-  { id: 'crown', name: 'Тәж', price: 100, icon: '👑' },
+  { id: 'robe', name: 'Мантия', price: 30, icon: '🎓' },
+  { id: 'crown', name: 'Тәж', price: 40, icon: '👑' },
+  { id: 'champion', name: 'Чемпион', price: 50, icon: '🏆' },
+  { id: 'smart', name: 'Зияткер стилі', price: 45, icon: '✨' },
 ];
 
 const ShopRoom: React.FC = () => {
@@ -17,13 +17,27 @@ const ShopRoom: React.FC = () => {
     buyItem,
     equipItem,
     selectedAvatar,
+    setSelectedAvatar
   } = useGame();
 
   const getAvatarEmoji = () => {
-    if (selectedAvatar === 'boy') return '🧑‍🎓';
-    if (selectedAvatar === 'girl') return '👩‍🎓';
-    if (selectedAvatar === 'student1') return '🧑';
-    return '👧';
+    if (selectedAvatar === 'boy') {
+      if (equippedItem === 'robe') return '🧑‍🎓';
+      if (equippedItem === 'crown') return '🤴';
+      if (equippedItem === 'champion') return '🦸‍♂️';
+      if (equippedItem === 'smart') return '🧑‍💼';
+      return '🧑';
+    }
+
+    if (selectedAvatar === 'girl') {
+      if (equippedItem === 'robe') return '👩‍🎓';
+      if (equippedItem === 'crown') return '👸';
+      if (equippedItem === 'champion') return '🦸‍♀️';
+      if (equippedItem === 'smart') return '👩‍💼';
+      return '👩';
+    }
+
+    return '🧑';
   };
 
   return (
@@ -44,9 +58,37 @@ const ShopRoom: React.FC = () => {
             Аватар
           </h2>
 
+          
+
           <div className="flex flex-col items-center gap-4">
             <div className="text-7xl">
-              {getAvatarEmoji()} {equippedItem === 'cap_red' && '🧢'} {equippedItem === 'glasses' && '🕶️'} {equippedItem === 'jacket' && '🧥'} {equippedItem === 'crown' && '👑'}
+              {getAvatarEmoji()} {equippedItem === 'robe'} {equippedItem === 'crown'} {equippedItem === 'champion'} {equippedItem === 'smart'}
+            </div>
+
+            <div className="mt-4 flex gap-3 justify-center">
+              <button
+                onClick={() => setSelectedAvatar('boy')}
+                className="px-4 py-2 rounded-xl font-bold"
+                style={{
+                  background: 'hsl(280 20% 22%)',
+                  color: 'white',
+                  border: '1px solid hsl(300 70% 60% / 0.25)',
+                }}
+              >
+                Ұл
+              </button>
+
+              <button
+                onClick={() => setSelectedAvatar('girl')}
+                className="px-4 py-2 rounded-xl font-bold"
+                style={{
+                  background: 'hsl(280 20% 22%)',
+                  color: 'white',
+                  border: '1px solid hsl(300 70% 60% / 0.25)',
+                }}
+              >
+                Қыз
+              </button>
             </div>
 
             <div className="px-4 py-2 rounded-xl font-bold" style={{ background: 'hsl(280 20% 18%)', color: 'hsl(0 0% 92%)' }}>
