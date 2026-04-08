@@ -9,56 +9,36 @@ interface GeographyTask {
   correct: number;
   reward: number;
   type: string;
+  image?: string;
+  hint?: string;
 }
 
 const TASKS: GeographyTask[] = [
   {
     id: 'geo_1',
-    question: 'Қазақстанның астанасы қай қала?',
-    options: ['Алматы', 'Шымкент', 'Астана', 'Тараз'],
+    question: 'Берілген тізімнен мұхитқа жатпайтын нысанды табыңыз:',
+    options: ['Тынық', 'Атлант', 'Каспий', 'Үнді'],
     correct: 2,
-    reward: 10,
-    type: 'Астана',
-  },
-  {
-    id: 'geo_2',
-    question: 'Жер шарындағы ең үлкен мұхит қайсысы?',
-    options: ['Атлант мұхиты', 'Үнді мұхиты', 'Солтүстік Мұзды мұхит', 'Тынық мұхиты'],
-    correct: 3,
-    reward: 10,
+    reward: 5,
     type: 'Мұхиттар',
   },
   {
-    id: 'geo_3',
-    question: 'Қазақстан қай құрлықта орналасқан?',
-    options: ['Африка', 'Еуропа', 'Еуразия', 'Оңтүстік Америка'],
-    correct: 2,
-    reward: 10,
-    type: 'Құрлықтар',
+    id: 'geo_2',
+    question: 'Жер шарындағы ең биік шыңды атаңыз?',
+    options: ['Хан Тәңірі', 'Эверест (Джомолунгма)', 'Килиманджаро'],
+    correct: 1,
+    reward: 5,
+    type: 'Таулар',
+    image: '/geography/everest.png',
+    hint: 'Суретке мұқият қараңыз',
   },
   {
-    id: 'geo_4',
+    id: 'geo_3',
     question: 'Францияның астанасы қай қала?',
     options: ['Рим', 'Берлин', 'Мадрид', 'Париж'],
     correct: 3,
-    reward: 15,
+    reward: 5,
     type: 'Елдер мен астаналар',
-  },
-  {
-    id: 'geo_5',
-    question: 'Әлемдегі ең ұзын өзендердің бірі қайсысы?',
-    options: ['Ніл', 'Есіл', 'Іле', 'Жайық'],
-    correct: 0,
-    reward: 15,
-    type: 'Өзендер',
-  },
-  {
-    id: 'geo_6',
-    question: 'Жердің серігі қалай аталады?',
-    options: ['Күн', 'Ай', 'Марс', 'Шолпан'],
-    correct: 1,
-    reward: 10,
-    type: 'Ғарыш',
   },
 ];
 
@@ -157,10 +137,10 @@ const GeographyRoom: React.FC = () => {
 
         <div
           className="w-full room-panel p-6 animate-fade-in"
-          style={{ background: 'hsl(180 25% 13% / 0.95)', borderColor: 'hsl(170 70% 50% / 0.25)' }}
+          style={{ background: 'hsl(180 25% 13% / 0.90)', borderColor: 'hsl(170 70% 50% / 0.25)' }}
         >
           <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <span
                 className="text-xs font-bold px-2 py-0.5 rounded-full"
                 style={{ background: 'hsl(170 70% 50% / 0.18)', color: 'hsl(170 80% 68%)' }}
@@ -177,7 +157,7 @@ const GeographyRoom: React.FC = () => {
                   className="text-xs font-bold px-2 py-0.5 rounded-full"
                   style={{ background: 'hsl(145 70% 45% / 0.18)', color: 'hsl(145 80% 70%)' }}
                 >
-                  ✓
+                  ✓ Орындалды
                 </span>
               )}
             </div>
@@ -188,7 +168,7 @@ const GeographyRoom: React.FC = () => {
           <div
             className="rounded-xl p-6 mb-6 text-center"
             style={{
-              background: 'hsl(180 20% 10%)',
+              background: 'hsl(180 20% 10% / 0.92)',
               backgroundImage:
                 'linear-gradient(hsl(170 70% 50% / 0.03) 1px, transparent 1px), linear-gradient(90deg, hsl(170 70% 50% / 0.03) 1px, transparent 1px)',
               backgroundSize: '22px 22px',
@@ -197,9 +177,30 @@ const GeographyRoom: React.FC = () => {
             <p className="font-display text-2xl font-bold" style={{ color: 'hsl(170 80% 74%)' }}>
               {task.question}
             </p>
+
+            {task.hint && (
+              <p className="text-sm mt-2" style={{ color: 'hsl(180 15% 60%)' }}>
+                {task.hint}
+              </p>
+            )}
           </div>
 
-          <div className="grid grid-cols-2 gap-3 mb-4">
+          {task.image && (
+            <div className="flex justify-center mb-6">
+              <div
+                className="rounded-2xl overflow-hidden border max-w-xl w-full"
+                style={{ borderColor: 'hsl(170 70% 50% / 0.22)' }}
+              >
+                <img
+                  src={task.image}
+                  alt="Сурет"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </div>
+          )}
+
+          <div className={`grid gap-3 mb-4 ${task.options.length === 3 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-2'}`}>
             {task.options.map((opt, i) => {
               const s = getOptionStyle(i);
 

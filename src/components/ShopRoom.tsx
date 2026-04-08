@@ -3,10 +3,10 @@ import { useGame } from '@/contexts/GameContext';
 import HudBar from '@/components/HudBar';
 
 const SHOP_ITEMS = [
-  { id: 'robe', name: 'Мантия', price: 30, icon: '🎓' },
-  { id: 'crown', name: 'Тәж', price: 40, icon: '👑' },
-  { id: 'champion', name: 'Чемпион', price: 50, icon: '🏆' },
-  { id: 'smart', name: 'Зияткер стилі', price: 45, icon: '✨' },
+  { id: 'robe', name: 'Мантия', price: 10, icon: '🎓' },
+  { id: 'crown', name: 'Тәж', price: 15, icon: '👑' },
+  { id: 'smart', name: 'Зияткер стилі', price: 20, icon: '✨' },
+  { id: 'champion', name: 'Чемпион', price: 30, icon: '🏆' },
 ];
 
 const ShopRoom: React.FC = () => {

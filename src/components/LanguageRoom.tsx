@@ -4,18 +4,21 @@ import HudBar from '@/components/HudBar';
 
 interface LanguageTask {
   id: string;
-  phrase: string;
+  phrase?: string;
   question: string;
   options: string[];
   correct: number;
   reward: number;
+  type: string;
+  helper?: string;
 }
 
 const TASKS: LanguageTask[] = [
   {
     id: 'lang_1',
+    type: 'Аударма',
     phrase: 'Welcome to London!',
-    question: '“Welcome to London” сөйлемінің аудармасын таңда',
+    question: '“Welcome to London!” сөйлемінің аудармасын таңда',
     options: [
       'Лондонға қош келдің!',
       'Лондоннан келдім',
@@ -23,72 +26,31 @@ const TASKS: LanguageTask[] = [
       'Лондонға барайық',
     ],
     correct: 0,
-    reward: 10,
+    reward: 5,
+    helper: 'London туралы тапсырма',
   },
   {
     id: 'lang_2',
-    phrase: 'How are you?',
-    question: '“How are you?” нені білдіреді?',
+    type: 'Сөйлем құрастыру',
+    question: 'Берілген сөздерден дұрыс сөйлем құраңыз:',
     options: [
-      'Сен қайда барасың?',
-      'Қалың қалай?',
-      'Сенің атың кім?',
-      'Неше жастасың?',
+      'English I speak well.',
+      'I English speak well.',
+      'I speak English well.',
+      'Speak I English well.',
     ],
-    correct: 1,
-    reward: 10,
+    correct: 2,
+    reward: 5,
+    helper: 'Сөздер: English / I / speak / well',
   },
   {
     id: 'lang_3',
-    phrase: 'What is your name?',
-    question: '“What is your name?” сөйлемінің мағынасы қандай?',
-    options: [
-      'Сен қайдан келдің?',
-      'Сенің атың кім?',
-      'Қайда тұрасың?',
-      'Қалың қалай?',
-    ],
+    type: 'Бос орынды толтыру',
+    question: 'Сөйлемдегі бос орынға дұрыс сөзді қойыңыз:\nI have two ... in my bag.',
+    options: ['apple', 'apples', 'an apple'],
     correct: 1,
-    reward: 10,
-  },
-  {
-    id: 'lang_4',
-    phrase: 'I am from Kazakhstan.',
-    question: '“I am from Kazakhstan” сөйлемінің аудармасын таңда',
-    options: [
-      'Мен Қазақстанға барамын',
-      'Мен Қазақстаннанмын',
-      'Мен Қазақстанды жақсы көремін',
-      'Мен Лондонда тұрамын',
-    ],
-    correct: 1,
-    reward: 15,
-  },
-  {
-    id: 'lang_5',
-    phrase: 'How old are you?',
-    question: 'Бұл сөйлемнің дұрыс аудармасын таңда',
-    options: [
-      'Сен нешеде оянасың?',
-      'Сен қай сыныпта оқисың?',
-      'Сен неше жастасың?',
-      'Сен қайда тұрасың?',
-    ],
-    correct: 2,
-    reward: 15,
-  },
-  {
-    id: 'lang_6',
-    phrase: 'Nice to meet you!',
-    question: '“Nice to meet you!” нені білдіреді?',
-    options: [
-      'Танысқаныма қуаныштымын!',
-      'Кездескенше!',
-      'Саған көмектесейін',
-      'Қош келдің!',
-    ],
-    correct: 0,
-    reward: 15,
+    reward: 5,
+    helper: 'Дұрыс сөзді таңда',
   },
 ];
 
@@ -144,8 +106,6 @@ const LanguageRoom: React.FC = () => {
     setFeedback(null);
   };
 
- 
-
   const getOptionStyle = (i: number) => {
     if (selected === null) {
       return {
@@ -193,9 +153,8 @@ const LanguageRoom: React.FC = () => {
         <HudBar title="🇬🇧 Language Town" showBack />
       </div>
 
-      {/* Intro animation */}
       {showIntro && (
-        <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/35 backdrop-blur-[2px]">
+        <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/25 backdrop-blur-[2px]">
           <div className="px-8 py-6 rounded-3xl border border-cyan-300/30 bg-slate-900/85 shadow-2xl animate-fade-in">
             <p className="text-center text-2xl md:text-4xl font-black text-cyan-300 tracking-wide">
               Welcome to London!
@@ -206,10 +165,10 @@ const LanguageRoom: React.FC = () => {
 
       <div className="flex-1 flex items-end justify-center px-4 pb-8 relative z-10">
         <div className="w-full max-w-6xl grid gap-4 lg:grid-cols-[0.95fr_1.05fr] items-end">
-          {/* Character / left side */}
+          {/* Left side bubble only */}
           <div className="relative min-h-[420px] hidden lg:flex items-start">
             <div
-              className="absolute left-10 top-0 max-w-[300px] rounded-3xl px-5 py-4 border shadow-2xl animate-fade-in"
+              className="absolute left-10 top-0 max-w-[320px] rounded-3xl px-5 py-4 border shadow-2xl animate-fade-in"
               style={{
                 background: 'hsl(210 30% 12% / 0.92)',
                 borderColor: 'hsl(200 85% 65% / 0.28)',
@@ -219,11 +178,15 @@ const LanguageRoom: React.FC = () => {
               <p className="text-sm uppercase tracking-[0.2em] text-cyan-300 mb-2">
                 London Guide
               </p>
-              <p className="text-lg font-bold text-white">
-                {task.phrase}
-              </p>
+
+              {task.phrase && (
+                <p className="text-lg font-bold text-white">
+                  {task.phrase}
+                </p>
+              )}
+
               <p className="text-sm mt-2 text-slate-300">
-                Let's practice English together!
+                {task.helper || "Let's practice English together!"}
               </p>
             </div>
           </div>
@@ -245,7 +208,7 @@ const LanguageRoom: React.FC = () => {
                     color: 'hsl(190 90% 72%)',
                   }}
                 >
-                  English Quest
+                  {task.type}
                 </span>
 
                 <span className="text-xs text-slate-300">
@@ -268,13 +231,25 @@ const LanguageRoom: React.FC = () => {
               <div className="educoin-badge text-sm">🪙 +{task.reward}</div>
             </div>
 
-            {/* Mobile phrase bubble */}
-            <div className="lg:hidden mb-4 rounded-2xl border p-4" style={{ background: 'hsl(210 30% 12% / 0.92)', borderColor: 'hsl(200 85% 65% / 0.22)' }}>
+            {/* Mobile helper */}
+            <div
+              className="lg:hidden mb-4 rounded-2xl border p-4"
+              style={{
+                background: 'hsl(210 30% 12% / 0.92)',
+                borderColor: 'hsl(200 85% 65% / 0.22)',
+              }}
+            >
               <p className="text-xs uppercase tracking-[0.2em] text-cyan-300 mb-2">
                 London Guide
               </p>
-              <p className="text-lg font-bold text-white">{task.phrase}</p>
-              <p className="text-sm mt-2 text-slate-300">Let's practice English together!</p>
+
+              {task.phrase && (
+                <p className="text-lg font-bold text-white">{task.phrase}</p>
+              )}
+
+              <p className="text-sm mt-2 text-slate-300">
+                {task.helper || "Let's practice English together!"}
+              </p>
             </div>
 
             <div
@@ -287,12 +262,12 @@ const LanguageRoom: React.FC = () => {
               <p className="text-sm uppercase tracking-[0.2em] text-cyan-300 mb-2">
                 Сұрақ
               </p>
-              <h2 className="text-xl md:text-2xl font-black text-white leading-snug">
+              <h2 className="text-xl md:text-2xl font-black text-white leading-snug whitespace-pre-line">
                 {task.question}
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className={`grid gap-3 ${task.options.length === 3 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1 md:grid-cols-2'}`}>
               {task.options.map((opt, i) => {
                 const s = getOptionStyle(i);
 

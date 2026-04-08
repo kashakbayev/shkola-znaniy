@@ -29,7 +29,7 @@ interface GameContextType extends GameState {
 }
 
 const STORAGE_KEY = 'eduschool_progress';
-const TOTAL_TASKS = 24;
+const TOTAL_TASKS = 15;
 
 const defaultState: GameState = {
   educoins: 0,
