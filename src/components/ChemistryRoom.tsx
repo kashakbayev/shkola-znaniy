@@ -26,12 +26,12 @@ interface MoleculeTask {
 }
 
 const TASKS: MoleculeTask[] = [
-  { id: 'chem_1', name: 'Су (H₂O)', formula: 'H₂O', required: { H: 2, O: 1 }, reward: 10, hint: '2 сутек + 1 оттек' },
-  { id: 'chem_2', name: 'Көмірқышқыл газы (CO₂)', formula: 'CO₂', required: { C: 1, O: 2 }, reward: 15, hint: '1 көміртек + 2 оттек' },
-  { id: 'chem_3', name: 'Оттек (O₂)', formula: 'O₂', required: { O: 2 }, reward: 10, hint: '2 оттек атомы' },
-  { id: 'chem_4', name: 'Аммиак (NH₃)', formula: 'NH₃', required: { N: 1, H: 3 }, reward: 15, hint: '1 азот + 3 сутек' },
-  { id: 'chem_5', name: 'Метан (CH₄)', formula: 'CH₄', required: { C: 1, H: 4 }, reward: 20, hint: '1 көміртек + 4 сутек' },
-  { id: 'chem_6', name: 'Сутек (H₂)', formula: 'H₂', required: { H: 2 }, reward: 10, hint: '2 сутек атомы' },
+  { id: 'chem_1', name: 'Су (H₂O)', formula: 'H₂O', required: { H: 2, O: 1 }, reward: 5, hint: '2 сутек + 1 оттек' },
+  { id: 'chem_2', name: 'Көмірқышқыл газы (CO₂)', formula: 'CO₂', required: { C: 1, O: 2 }, reward: 5, hint: '1 көміртек + 2 оттек' },
+  { id: 'chem_3', name: 'Оттек (O₂)', formula: 'O₂', required: { O: 2 }, reward: 5, hint: '2 оттек атомы' },
+  { id: 'chem_4', name: 'Аммиак (NH₃)', formula: 'NH₃', required: { N: 1, H: 3 }, reward: 5, hint: '1 азот + 3 сутек' },
+  { id: 'chem_5', name: 'Метан (CH₄)', formula: 'CH₄', required: { C: 1, H: 4 }, reward: 5, hint: '1 көміртек + 4 сутек' },
+  { id: 'chem_6', name: 'Сутек (H₂)', formula: 'H₂', required: { H: 2 }, reward: 5, hint: '2 сутек атомы' },
 ];
 
 interface PlacedAtom {
@@ -117,7 +117,16 @@ const ChemistryRoom: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: 'linear-gradient(180deg, hsl(200 40% 6%), hsl(200 35% 10%), hsl(200 30% 8%))' }}>
+    <div
+      className="min-h-screen flex flex-col"
+      style={{
+        backgroundImage:
+          'linear-gradient(180deg, rgba(8,15,28,0.16), rgba(8,15,28,0.34), rgba(8,15,28,0.50)), url(/backgrounds/chemistry.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
       <div className="p-4"><HudBar title="🧪 Химия" showBack /></div>
 
       <div className="flex-1 flex flex-col px-4 pb-4 gap-4 max-w-6xl mx-auto w-full">

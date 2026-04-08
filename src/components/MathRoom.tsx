@@ -63,7 +63,16 @@ const MathRoom: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: 'linear-gradient(180deg, hsl(240 30% 8%), hsl(240 25% 12%), hsl(250 20% 10%))' }}>
+    <div
+      className="min-h-screen flex flex-col"
+      style={{
+        backgroundImage:
+          'linear-gradient(180deg, rgba(8,15,28,0.16), rgba(8,15,28,0.34), rgba(8,15,28,0.50)), url(/backgrounds/math.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
       <div className="p-4"><HudBar title="📐 Математика" showBack /></div>
 
       <div className="flex-1 flex flex-col items-center justify-center px-4 pb-8 max-w-3xl mx-auto w-full">

@@ -118,7 +118,16 @@ const HistoryRoom: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: 'linear-gradient(180deg, hsl(30 25% 8%), hsl(30 20% 12%), hsl(25 18% 10%))' }}>
+    <div
+      className="min-h-screen flex flex-col"
+      style={{
+        backgroundImage:
+          'linear-gradient(180deg, rgba(8,15,28,0.16), rgba(8,15,28,0.34), rgba(8,15,28,0.50)), url(/backgrounds/history.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
       <div className="p-4"><HudBar title="🏛️ Қазақстан тарихы" showBack /></div>
 
       {/* Decorative */}

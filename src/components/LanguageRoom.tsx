@@ -183,7 +183,7 @@ const LanguageRoom: React.FC = () => {
       className="min-h-screen flex flex-col relative overflow-hidden"
       style={{
         backgroundImage:
-          'linear-gradient(180deg, rgba(8,15,28,0.30), rgba(8,15,28,0.58), rgba(8,15,28,0.78)), url(/language/london.png)',
+          'linear-gradient(180deg, rgba(8,15,28,0.16), rgba(8,15,28,0.34), rgba(8,15,28,0.50)), url(/language/london.png)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',

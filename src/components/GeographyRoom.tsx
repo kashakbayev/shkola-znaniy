@@ -139,7 +139,13 @@ const GeographyRoom: React.FC = () => {
   return (
     <div
       className="min-h-screen flex flex-col"
-      style={{ background: 'linear-gradient(180deg, hsl(175 35% 8%), hsl(185 28% 12%), hsl(190 20% 10%))' }}
+      style={{
+        backgroundImage:
+          'linear-gradient(180deg, rgba(8,15,28,0.16), rgba(8,15,28,0.34), rgba(8,15,28,0.50)), url(/backgrounds/geography.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
     >
       <div className="p-4">
         <HudBar title="🌍 Географиялық панорама" showBack />
