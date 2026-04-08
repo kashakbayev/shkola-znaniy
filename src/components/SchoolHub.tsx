@@ -99,15 +99,25 @@ const SchoolHub: React.FC = () => {
       style={{ background: 'linear-gradient(180deg, hsl(220 25% 10%), hsl(220 20% 16%), hsl(25 20% 14%))' }}
     >
       <div className="p-4">
-        <HudBar title="Edu World" />
+        <HudBar title="World-Edu" />
       </div>
 
       <div className="flex-1 flex flex-col items-center justify-center px-4 pb-8">
         {/* Title area */}
         <div className="text-center mb-10 animate-fade-in">
-          <div className="text-6xl mb-3">🏫</div>
+          <div className="mb-4 flex justify-center">
+            <img
+              src="/logo.png"
+              alt="Edu World logo"
+              className="w-24 h-24 rounded-full object-cover border-4 shadow-xl"
+              style={{
+                borderColor: 'hsl(0 0% 100% / 0.18)',
+                boxShadow: '0 0 30px hsl(0 0% 100% / 0.08)',
+              }}
+            />
+        </div>
           <h1 className="font-display text-4xl font-black mb-2" style={{ color: 'hsl(0 0% 92%)' }}>
-            Edu World
+            World-Edu
           </h1>
           <p className="font-body text-lg" style={{ color: 'hsl(220 15% 60%)' }}>
             Кабинетті таңда да, оқуды баста
